@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xu.springbootinit.mapper.ChartDataMapper">
+    <insert id="insertData">
+        insert into ${tableName} VALUES
+        <foreach collection="data" index="index" item="item" separator="," open="(" close=")">
+            ${item}
+        </foreach>
+    </insert>
+    <update id="createTable">
+        CREATE TABLE IF NOT EXISTS ${tableName}
+        <foreach collection="header" item="item" index="index" separator="," open="(" close=")">
+            ${item} varchar(20) NULL
+        </foreach>
+    </update>
+    <select id="selectAll" resultType="java.lang.Object">
+        select * from ${tableName}
+    </select>
+
+</mapper>
